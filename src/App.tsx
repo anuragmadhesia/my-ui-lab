@@ -1,6 +1,8 @@
 import { FormEvent, useState } from 'react'
 import './App.css'
 
+type Page = 'landing' | 'login' | 'dashboard'
+
 function App() {
   const [activePage, setActivePage] = useState<'landing' | 'login'>('landing')
 
