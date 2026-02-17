@@ -2,140 +2,156 @@
   width: 100%;
 }
 
-.app-shell {
+.dashboard-layout {
   min-height: 100vh;
-  background: linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%);
-  color: #0f172a;
-}
-
-.top-nav {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 1.25rem 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.top-nav h1 {
-  margin: 0;
-  font-size: 1.25rem;
-}
-
-.top-nav nav {
-  display: flex;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-}
-
-.nav-link {
-  border: none;
-  background: transparent;
-  color: #334155;
-  padding: 0.5rem 0.75rem;
-  border-radius: 8px;
-}
-
-.nav-link.active {
-  background: #e2e8f0;
-  color: #0f172a;
-}
-
-.landing-page {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 3rem 1.5rem;
-}
-
-.hero-copy {
-  max-width: 680px;
-}
-
-.pill {
-  display: inline-block;
-  margin: 0;
-  padding: 0.3rem 0.75rem;
-  background: #dbeafe;
-  border-radius: 999px;
-  color: #1e3a8a;
-  font-weight: 600;
-  font-size: 0.85rem;
-}
-
-.hero-copy h2 {
-  margin-top: 1rem;
-  font-size: clamp(2rem, 4vw, 3.4rem);
-  line-height: 1.1;
-}
-
-.hero-copy p {
-  color: #334155;
-  font-size: 1.05rem;
-}
-
-.cta {
-  margin-top: 1rem;
-  border: none;
-  background: #2563eb;
-  color: #fff;
-  padding: 0.7rem 1.2rem;
-  border-radius: 10px;
-  font-weight: 600;
-}
-
-.feature-grid {
-  margin-top: 2.75rem;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: 260px 1fr;
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+.sidebar {
+  padding: 1.5rem 1rem;
+  border-right: 1px solid #e2e8f0;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.brand {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.subtitle {
+  margin-top: 0.25rem;
+  color: #64748b;
+}
+
+.sidebar-nav {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.sidebar-link {
+  border: none;
+  border-radius: 10px;
+  padding: 0.75rem 0.9rem;
+  text-align: left;
+  font-weight: 600;
+  color: #334155;
+  background: transparent;
+}
+
+.sidebar-link.active {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.dashboard-content {
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+
+.navbar {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid #e2e8f0;
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   gap: 1rem;
 }
 
-.feature-grid article {
+.navbar h1 {
+  margin: 0;
+  font-size: 1.45rem;
+}
+
+.navbar p {
+  margin: 0.3rem 0 0;
+  color: #64748b;
+}
+
+.profile-button {
+  border: 1px solid #cbd5e1;
+  background: #fff;
+  color: #0f172a;
+  border-radius: 10px;
+  padding: 0.55rem 0.95rem;
+  font-weight: 600;
+}
+
+.page-content {
+  padding: 1.5rem;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.metric-card,
+.report-list article {
   background: #fff;
   border: 1px solid #e2e8f0;
-  border-radius: 12px;
+  border-radius: 14px;
   padding: 1rem;
 }
 
-.feature-grid h3 {
+.metric-card h2,
+.report-list h2 {
   margin-top: 0;
+  margin-bottom: 0.4rem;
+  font-size: 1.05rem;
 }
 
-.login-page {
-  min-height: calc(100vh - 80px);
-  display: grid;
-  place-items: center;
-  padding: 1.5rem;
-}
-
-.login-card {
-  width: min(440px, 100%);
-  background: #fff;
-  border-radius: 14px;
-  border: 1px solid #e2e8f0;
-  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
-  padding: 1.5rem;
-  display: grid;
-  gap: 0.65rem;
-}
-
-.login-card h2 {
+.metric {
   margin: 0;
+  font-size: 1.8rem;
+  font-weight: 700;
 }
 
-.login-card p {
-  margin-top: 0;
+.trend {
+  display: inline-block;
+  margin-top: 0.45rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.trend.positive {
+  color: #15803d;
+}
+
+.trend.neutral {
   color: #475569;
 }
 
-.login-card label {
-  font-weight: 600;
-  color: #1e293b;
+.report-list {
+  display: grid;
+  gap: 1rem;
 }
 
-.login-card input {
-  border: 1px solid #cbd5e1;
-  border-radius: 10px;
-  padding: 0.7rem 0.75rem;
-  font: inherit;
+.report-list p {
+  margin-bottom: 0;
+  color: #334155;
+}
+
+@media (max-width: 900px) {
+  .dashboard-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    border-right: 0;
+    border-bottom: 1px solid #e2e8f0;
+    gap: 1rem;
+  }
+
+  .sidebar-nav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
