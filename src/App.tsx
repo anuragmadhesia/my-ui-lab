@@ -1,80 +1,93 @@
-import { FormEvent, useState } from 'react'
+import { useState } from 'react'
 import './App.css'
 
-type Page = 'landing' | 'login' | 'dashboard'
+type DashboardPage = 'overview' | 'reports'
+
+const navItems: Array<{ id: DashboardPage; label: string; description: string }> = [
+  {
+    id: 'overview',
+    label: 'Overview',
+    description: 'Track product performance and user growth in one place.',
+  },
+  {
+    id: 'reports',
+    label: 'Reports',
+    description: 'Review weekly engagement trends and campaign outcomes.',
+  },
+]
 
 function App() {
-  const [activePage, setActivePage] = useState<'landing' | 'login'>('landing')
+  const [activePage, setActivePage] = useState<DashboardPage>('overview')
 
-  const handleLoginSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-  }
+  const activeItem = navItems.find((item) => item.id === activePage) ?? navItems[0]
 
   return (
-    <div className="app-shell">
-      <header className="top-nav">
-        <h1>UI Lab</h1>
-        <nav>
-          <button
-            className={activePage === 'landing' ? 'nav-link active' : 'nav-link'}
-            onClick={() => setActivePage('landing')}
-          >
-            Landing
-          </button>
-          <button
-            className={activePage === 'login' ? 'nav-link active' : 'nav-link'}
-            onClick={() => setActivePage('login')}
-          >
-            Login
-          </button>
-        </nav>
-      </header>
+    <div className="dashboard-layout">
+      <aside className="sidebar">
+        <div>
+          <p className="brand">UI Lab</p>
+          <p className="subtitle">Dashboard</p>
+        </div>
 
-      {activePage === 'landing' ? (
-        <main className="landing-page">
-          <div className="hero-copy">
-            <p className="pill">Welcome to UI Lab</p>
-            <h2>Design, build, and ship interfaces faster.</h2>
-            <p>
-              Create beautiful experiences with reusable UI patterns, thoughtful
-              interactions, and a modern design system.
-            </p>
-            <button className="cta" onClick={() => setActivePage('login')}>
-              Get started
+        <nav className="sidebar-nav" aria-label="Dashboard sections">
+          {navItems.map((item) => (
+            <button
+              key={item.id}
+              className={activePage === item.id ? 'sidebar-link active' : 'sidebar-link'}
+              onClick={() => setActivePage(item.id)}
+            >
+              {item.label}
             </button>
+          ))}
+        </nav>
+      </aside>
+
+      <div className="dashboard-content">
+        <header className="navbar">
+          <div>
+            <h1>{activeItem.label}</h1>
+            <p>{activeItem.description}</p>
           </div>
+          <button className="profile-button">Admin</button>
+        </header>
 
-          <section className="feature-grid">
-            <article>
-              <h3>Composable</h3>
-              <p>Build pages quickly from modular and reusable components.</p>
-            </article>
-            <article>
-              <h3>Accessible</h3>
-              <p>Ship inclusive UIs with sensible defaults and keyboard support.</p>
-            </article>
-            <article>
-              <h3>Fast</h3>
-              <p>Keep your workflow snappy from prototyping to production.</p>
-            </article>
-          </section>
+        <main className="page-content">
+          {activePage === 'overview' ? (
+            <section className="card-grid">
+              <article className="metric-card">
+                <h2>Revenue</h2>
+                <p className="metric">$42,800</p>
+                <span className="trend positive">+12% from last month</span>
+              </article>
+              <article className="metric-card">
+                <h2>New Users</h2>
+                <p className="metric">1,240</p>
+                <span className="trend positive">+8% from last month</span>
+              </article>
+              <article className="metric-card">
+                <h2>Churn Rate</h2>
+                <p className="metric">2.4%</p>
+                <span className="trend neutral">No significant change</span>
+              </article>
+            </section>
+          ) : (
+            <section className="report-list">
+              <article>
+                <h2>Weekly Product Usage</h2>
+                <p>Average session duration increased by 14% over the last 7 days.</p>
+              </article>
+              <article>
+                <h2>Campaign Conversion</h2>
+                <p>Email campaign click-through rates improved from 2.9% to 4.1%.</p>
+              </article>
+              <article>
+                <h2>Support Queue Snapshot</h2>
+                <p>Open tickets reduced by 23% after shipping the self-serve help center.</p>
+              </article>
+            </section>
+          )}
         </main>
-      ) : (
-        <main className="login-page">
-          <form className="login-card" onSubmit={handleLoginSubmit}>
-            <h2>Welcome back</h2>
-            <p>Sign in to continue to your dashboard.</p>
-
-            <label htmlFor="email">Email</label>
-            <input id="email" type="email" placeholder="you@example.com" required />
-
-            <label htmlFor="password">Password</label>
-            <input id="password" type="password" placeholder="••••••••" required />
-
-            <button type="submit" className="cta">Sign in</button>
-          </form>
-        </main>
-      )}
+      </div>
     </div>
   )
 }
